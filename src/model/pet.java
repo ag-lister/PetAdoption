@@ -2,12 +2,39 @@ package model;
 
 import java.time.LocalDate;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+@Entity
+@Table(name="pet")
 public class pet {
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@OneToMany(cascade=CascadeType.MERGE, fetch=FetchType.EAGER)
+	@JoinTable
+	( 
+			name="agency",
+			joinColumns= { @JoinColumn(name="PET_ID", referencedColumnName="PET_ID") },
+			inverseJoinColumns={ @JoinColumn(name="PET_ID", referencedColumnName="PET_ID", unique=true) }
+			)
 	private int petID;
+	@Column(name="PET_SPECIES")
 	private String species;
+	@Column(name="PET_BREED")
 	private String breed;
+	@Column(name="PET_NAME")
 	private String name;
+	@Column(name="PET_AGE")
 	private int age;
+	@Column(name="DATE_SHELTERED")
 	private LocalDate dateSheltered;
 	public pet() {
 		super();
