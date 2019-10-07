@@ -1,10 +1,25 @@
 package model;
 
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
 public class foster {
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="FOSTER_ID")
 	private int id;
+	@Column(name="FOSTER_NAME")
 	private String name;
+	@Column(name="FOSTER_ADDRESS")
 	private String address;
+	@Column(name="FOSTER_PHONE")
 	private String phoneNumber;
+	@ManyToOne
+	@JoinColumn(name="AGENCY_ID")
 	private int agencyID;
 	public foster() {
 		super();
