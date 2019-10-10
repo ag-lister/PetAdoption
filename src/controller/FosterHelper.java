@@ -80,7 +80,9 @@ static EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("
 	public List<Foster> searchForItemByAddress(String address) {
 		EntityManager em = emfactory.createEntityManager();
 		em.getTransaction().begin();
+
 		TypedQuery<Foster> typedQuery = em.createQuery("select li from foster li where li.address = :selectedAddress",
+
 				Foster.class);
 		typedQuery.setParameter("selectedAddress", address);
 
@@ -92,7 +94,9 @@ static EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("
 	public List<Foster> searchForItemByPhone(String phone) {
 		EntityManager em = emfactory.createEntityManager();
 		em.getTransaction().begin();
+
 		TypedQuery<Foster> typedQuery = em.createQuery("select li from foster li where li.phoneNumber = :selectedPhone",
+
 				Foster.class);
 		typedQuery.setParameter("selectedPhone", phone);
 

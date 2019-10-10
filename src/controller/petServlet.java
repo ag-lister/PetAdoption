@@ -56,8 +56,10 @@ public class petServlet extends HttpServlet {
 		} catch (NumberFormatException ex) {
 			ld = LocalDate.now();
 		}
+
 		String agencyName = request.getParameter("agencyName");
 		a.getAgencyID();
+
 		Pet p = new Pet(species.toUpperCase(), breed.toUpperCase(), name.toUpperCase(), age, ld);
 		petHelper ph = new petHelper();
 		ph.insertPet(p);

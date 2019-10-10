@@ -1,19 +1,14 @@
 package model;
 
 import java.time.LocalDate;
-import java.util.List;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 @Entity
 @Table(name="pet")
@@ -31,14 +26,18 @@ public class Pet {
 	private int age;
 	@Column(name="DATE_SHELTERED")
 	private LocalDate dateSheltered;
+
 	@ManyToOne(cascade=CascadeType.PERSIST)
 	@JoinColumn(name="AGENCY_ID")
 	private Agency agency;
 
+
+	
 	public Pet() {
 		super();
 	}
 	public Pet(int petID, String species, String breed, String name, int age, LocalDate dateSheltered, Agency agency) {
+
 		super();
 		this.petID = petID;
 		this.species = species;
@@ -47,7 +46,7 @@ public class Pet {
 		this.age = age;
 		this.dateSheltered = dateSheltered;
 		this.agency = agency;
-	
+
 	}
 	public Pet(String species, String breed, String name, int age, LocalDate dateSheltered) {
 		super();
