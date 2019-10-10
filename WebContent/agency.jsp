@@ -4,10 +4,10 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Add Foster</title>
+<title>Add Agency</title>
 </head>
 <body>
-<form action = "addFosterServlet" method="post">
+<form action = "addAgencyServlet" method="post">
 Name: 
 <input type ="text" name = "name">
 <br />
@@ -17,7 +17,10 @@ Address:
 Phone: 
 <input type = "text" name = "phone">
 <br />
-<input type = "submit" value="Add Foster">
+Email: 
+<input type = "text" name = "email">
+<br />
+<input type = "submit" value="Add Item">
 </form> 
 <br />
 <a href = "index.html">Go to the main page</a>
