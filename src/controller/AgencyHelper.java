@@ -23,7 +23,7 @@ static EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("
 
 	public List<Agency> showAllItems() {
 		EntityManager em = emfactory.createEntityManager();
-		List<Agency> allItems = em.createQuery("SELECT li FROM agency li").getResultList();
+		List<Agency> allItems = em.createQuery("SELECT li FROM Agency li").getResultList();
 		return allItems;
 	}
 

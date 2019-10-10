@@ -31,12 +31,12 @@ static EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("
 		EntityManager em = emfactory.createEntityManager();
 		em.getTransaction().begin();
 		TypedQuery<Foster> typedQuery = em.createQuery(
-				"select li from foster li where li.foster_name = :selectedName and li.foster_address = :selectedAddress and li.foster_phone = :selectedPhone",
+				"select li from Foster li where li.name = :selectedName and li.address = :selectedAddress and li.phoneNumber = :selectedPhone",
 				Foster.class);
 
-		typedQuery.setParameter("selectedTitle", toDelete.getName());
-		typedQuery.setParameter("selectedAuthor", toDelete.getAddress());
-		typedQuery.setParameter("selectedGenre", toDelete.getPhoneNumber());
+		typedQuery.setParameter("selectedName", toDelete.getName());
+		typedQuery.setParameter("selectedAddress", toDelete.getAddress());
+		typedQuery.setParameter("selectedPhone", toDelete.getPhoneNumber());
 
 		typedQuery.setMaxResults(1);
 
@@ -68,7 +68,7 @@ static EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("
 	public List<Foster> searchForItemByName(String name) {
 		EntityManager em = emfactory.createEntityManager();
 		em.getTransaction().begin();
-		TypedQuery<Foster> typedQuery = em.createQuery("select li from foster li where li.foster_name = :selectedName",
+		TypedQuery<Foster> typedQuery = em.createQuery("select li from Foster li where li.name = :selectedName",
 				Foster.class);
 		typedQuery.setParameter("selectedName", name);
 
@@ -80,7 +80,7 @@ static EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("
 	public List<Foster> searchForItemByAddress(String address) {
 		EntityManager em = emfactory.createEntityManager();
 		em.getTransaction().begin();
-		TypedQuery<Foster> typedQuery = em.createQuery("select li from foster li where li.foster_address = :selectedAddress",
+		TypedQuery<Foster> typedQuery = em.createQuery("select li from foster li where li.address = :selectedAddress",
 				Foster.class);
 		typedQuery.setParameter("selectedAddress", address);
 
@@ -92,7 +92,7 @@ static EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("
 	public List<Foster> searchForItemByPhone(String phone) {
 		EntityManager em = emfactory.createEntityManager();
 		em.getTransaction().begin();
-		TypedQuery<Foster> typedQuery = em.createQuery("select li from foster li where li.foster_phone = :selectedPhone",
+		TypedQuery<Foster> typedQuery = em.createQuery("select li from foster li where li.phoneNumber = :selectedPhone",
 				Foster.class);
 		typedQuery.setParameter("selectedPhone", phone);
 

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.Agency;
 import model.Pet;
 
 
@@ -40,6 +41,8 @@ public class petServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		AgencyHelper ah = new AgencyHelper();
+		Agency a = new Agency();
 		String species = request.getParameter("species");
 		String breed = request.getParameter("breed");
 		String name = request.getParameter("name");
@@ -53,8 +56,9 @@ public class petServlet extends HttpServlet {
 		} catch (NumberFormatException ex) {
 			ld = LocalDate.now();
 		}
-		int agencyID = Integer.parseInt(request.getParameter("agency_ID"));
-		Pet p = new Pet(species.toUpperCase(), breed.toUpperCase(), name.toUpperCase(), age, ld, agencyID);
+		String agencyName = request.getParameter("agencyName");
+		a.getAgencyID();
+		Pet p = new Pet(species.toUpperCase(), breed.toUpperCase(), name.toUpperCase(), age, ld);
 		petHelper ph = new petHelper();
 		ph.insertPet(p);
 		getServletContext().getRequestDispatcher("/index.html").forward(request, response);

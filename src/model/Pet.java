@@ -33,11 +33,12 @@ public class Pet {
 	private LocalDate dateSheltered;
 	@ManyToOne(cascade=CascadeType.PERSIST)
 	@JoinColumn(name="AGENCY_ID")
-	private int agencyID;
+	private Agency agency;
+
 	public Pet() {
 		super();
 	}
-	public Pet(int petID, String species, String breed, String name, int age, LocalDate dateSheltered, int agencyID) {
+	public Pet(int petID, String species, String breed, String name, int age, LocalDate dateSheltered, Agency agency) {
 		super();
 		this.petID = petID;
 		this.species = species;
@@ -45,16 +46,16 @@ public class Pet {
 		this.name = name;
 		this.age = age;
 		this.dateSheltered = dateSheltered;
-		this.agencyID = agencyID;
+		this.agency = agency;
+	
 	}
-	public Pet(String species, String breed, String name, int age, LocalDate dateSheltered, int agencyID) {
+	public Pet(String species, String breed, String name, int age, LocalDate dateSheltered) {
 		super();
 		this.species = species;
 		this.breed = breed;
 		this.name = name;
 		this.age = age;
 		this.dateSheltered = dateSheltered;
-		this.agencyID = agencyID;
 	}
 	public int getPetID() {
 		return petID;
@@ -92,10 +93,18 @@ public class Pet {
 	public void setDateSheltered(LocalDate dateSheltered) {
 		this.dateSheltered = dateSheltered;
 	}
+	public Agency getAgency() {
+		return agency;
+	}
+	public void setAgency(Agency agency) {
+		this.agency = agency;
+	}
+	
 	@Override
 	public String toString() {
-		return "pet [petID=" + petID + ", species=" + species + ", breed=" + breed + ", name=" + name + ", age=" + age
-				+ ", dateSheltered=" + dateSheltered + "]";
+		return "Pet [petID=" + petID + ", species=" + species + ", breed=" + breed + ", name=" + name + ", age=" + age
+				+ ", dateSheltered=" + dateSheltered + ", agency=" + agency + "]";
 	}
+	
 
 }
