@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.pet;
+import model.Pet;
 
 
 /**
@@ -53,7 +53,7 @@ public class petServlet extends HttpServlet {
 		} catch (NumberFormatException ex) {
 			ld = LocalDate.now();
 		}
-		pet p = new pet(species.toUpperCase(), breed.toUpperCase(), name.toUpperCase(), age, ld);
+		Pet p = new Pet(species.toUpperCase(), breed.toUpperCase(), name.toUpperCase(), age, ld);
 		petHelper ph = new petHelper();
 		ph.insertPet(p);
 		getServletContext().getRequestDispatcher("/index.html").forward(request, response);

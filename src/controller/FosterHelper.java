@@ -7,95 +7,100 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
-
-import model.foster;
+import model.Foster;
 
 public class FosterHelper {
 static EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("PetAdoption");
 	
-	public void insertItem(foster li) {
+
+	public void insertItem(Foster li) {
 		EntityManager em = emfactory.createEntityManager();
 		em.getTransaction().begin();
 		em.persist(li);
 		em.getTransaction().commit();
 		em.close();
 	}
-	
-	public List<foster> showAllItems(){
+
+	public List<Foster> showAllItems() {
 		EntityManager em = emfactory.createEntityManager();
-		List<foster> allItems = em.createQuery("SELECT i FROM foster i").getResultList();
+		List<Foster> allItems = em.createQuery("SELECT li FROM foster li").getResultList();
 		return allItems;
 	}
-	
-	public void deleteItem(foster toDelete) {
+
+	public void deleteItem(Foster toDelete) {
 		EntityManager em = emfactory.createEntityManager();
 		em.getTransaction().begin();
-		TypedQuery<foster> typedQuery = em.createQuery("select li from foster li where li.name = :selectedName and li.address = :selectedAddress and li.phone = :selectedPhone", foster.class);
-		
+		TypedQuery<Foster> typedQuery = em.createQuery(
+				"select li from foster li where li.name = :selectedName and li.address = :selectedAddress and li.phone = :selectedPhone",
+				Foster.class);
+
 		typedQuery.setParameter("selectedTitle", toDelete.getName());
 		typedQuery.setParameter("selectedAuthor", toDelete.getAddress());
 		typedQuery.setParameter("selectedGenre", toDelete.getPhoneNumber());
-		
+
 		typedQuery.setMaxResults(1);
-		
-		foster result = typedQuery.getSingleResult();
-		
+
+		Foster result = typedQuery.getSingleResult();
+
 		em.remove(result);
 		em.getTransaction().commit();
 		em.close();
 	}
 
-	public foster searchForItemById(int idToEdit) {
+	public Foster searchForItemById(int idToEdit) {
 		EntityManager em = emfactory.createEntityManager();
 		em.getTransaction().begin();
-		foster found = em.find(foster.class, idToEdit);
+		Foster found = em.find(Foster.class, idToEdit);
 		em.close();
 		return found;
 	}
 
-	public void updateItem(foster toEdit) {
+	public void updateItem(Foster toEdit) {
 		EntityManager em = emfactory.createEntityManager();
 		em.getTransaction().begin();
-		
+
 		em.merge(toEdit);
 		em.getTransaction().commit();
 		em.close();
-		
+
 	}
 
-	public List<foster> searchForItemByTitle(String name) {
+	public List<Foster> searchForItemByTitle(String name) {
 		EntityManager em = emfactory.createEntityManager();
 		em.getTransaction().begin();
-		TypedQuery <foster> typedQuery = em.createQuery("select li from foster li where li.name = :selectedName", foster.class);
+		TypedQuery<Foster> typedQuery = em.createQuery("select li from foster li where li.name = :selectedName",
+				Foster.class);
 		typedQuery.setParameter("selectedTitle", name);
-		
-		List<foster> foundItems = typedQuery.getResultList();
+
+		List<Foster> foundItems = typedQuery.getResultList();
 		em.close();
 		return foundItems;
 	}
 
-	public List<foster> searchForItemByAuthor(String address) {
+	public List<Foster> searchForItemByAuthor(String address) {
 		EntityManager em = emfactory.createEntityManager();
 		em.getTransaction().begin();
-		TypedQuery <foster> typedQuery = em.createQuery("select li from foster li where li.address = :selectedAddress", foster.class);
+		TypedQuery<Foster> typedQuery = em.createQuery("select li from foster li where li.address = :selectedAddress",
+				Foster.class);
 		typedQuery.setParameter("selectedAuthor", address);
-		
-		List<foster> foundItems = typedQuery.getResultList();
+
+		List<Foster> foundItems = typedQuery.getResultList();
 		em.close();
 		return foundItems;
 	}
 
-	public List<foster> searchForItemByGenre(String phone) {
+	public List<Foster> searchForItemByGenre(String phone) {
 		EntityManager em = emfactory.createEntityManager();
 		em.getTransaction().begin();
-		TypedQuery <foster> typedQuery = em.createQuery("select li from foster li where li.phone = :selectedPhone", foster.class);
+		TypedQuery<Foster> typedQuery = em.createQuery("select li from foster li where li.phone = :selectedPhone",
+				Foster.class);
 		typedQuery.setParameter("selectedGenre", phone);
-		
-		List<foster> foundItems = typedQuery.getResultList();
+
+		List<Foster> foundItems = typedQuery.getResultList();
 		em.close();
 		return foundItems;
 	}
-	
+
 	public void cleanUp() {
 		emfactory.close();
 	}
