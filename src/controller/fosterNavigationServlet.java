@@ -12,7 +12,7 @@ import model.Foster;
 /**
  * Servlet implementation class navigationServlet
  */
-@WebServlet("/navigationServlet")
+@WebServlet("/fosterNavigationServlet")
 public class fosterNavigationServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

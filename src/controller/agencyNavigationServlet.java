@@ -12,7 +12,7 @@ import model.Agency;
 /**
  * Servlet implementation class navigationServlet
  */
-@WebServlet("/navigationServlet")
+@WebServlet("/agencyNavigationServlet")
 public class agencyNavigationServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

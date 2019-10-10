@@ -31,13 +31,11 @@ public class Pet {
 	private int age;
 	@Column(name="DATE_SHELTERED")
 	private LocalDate dateSheltered;
-	@ManyToOne(cascade=CascadeType.PERSIST)
-	@JoinColumn(name="AGENCY_ID")
-	private int agencyID;
+	
 	public Pet() {
 		super();
 	}
-	public Pet(int petID, String species, String breed, String name, int age, LocalDate dateSheltered, int agencyID) {
+	public Pet(int petID, String species, String breed, String name, int age, LocalDate dateSheltered) {
 		super();
 		this.petID = petID;
 		this.species = species;
@@ -45,16 +43,14 @@ public class Pet {
 		this.name = name;
 		this.age = age;
 		this.dateSheltered = dateSheltered;
-		this.agencyID = agencyID;
 	}
-	public Pet(String species, String breed, String name, int age, LocalDate dateSheltered, int agencyID) {
+	public Pet(String species, String breed, String name, int age, LocalDate dateSheltered) {
 		super();
 		this.species = species;
 		this.breed = breed;
 		this.name = name;
 		this.age = age;
 		this.dateSheltered = dateSheltered;
-		this.agencyID = agencyID;
 	}
 	public int getPetID() {
 		return petID;
