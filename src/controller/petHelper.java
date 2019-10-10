@@ -20,7 +20,7 @@ public class petHelper {
 	}
 	public List<Pet> showAllPets() {
 		EntityManager em = emfactory.createEntityManager();
-		List<Pet> allPets = em.createQuery("Select s from Seller s").getResultList();
+		List<Pet> allPets = em.createQuery("Select p from Pet p").getResultList();
 		return allPets;
 		
 	}
@@ -28,7 +28,7 @@ public class petHelper {
 		// TODO Auto-generated method stub
 		EntityManager em = emfactory.createEntityManager();
 		em.getTransaction().begin();
-		TypedQuery<Pet> typedQuery = em.createQuery("select p from pet p where p.pet_name = :selectedName", Pet.class);
+		TypedQuery<Pet> typedQuery = em.createQuery("select p from Pet p where p.pet_name = :selectedName", Pet.class);
 		typedQuery.setParameter("selectedName", petName);
 		typedQuery.setMaxResults(1);
 

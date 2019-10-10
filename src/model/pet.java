@@ -12,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 @Entity
@@ -19,13 +20,6 @@ import javax.persistence.Table;
 public class Pet {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@OneToMany(cascade=CascadeType.MERGE, fetch=FetchType.EAGER)
-	@JoinTable
-	( 
-			name="agency",
-			joinColumns= { @JoinColumn(name="PET_ID", referencedColumnName="PET_ID") },
-			inverseJoinColumns={ @JoinColumn(name="PET_ID", referencedColumnName="PET_ID", unique=true) }
-			)
 	private int petID;
 	@Column(name="PET_SPECIES")
 	private String species;
@@ -37,10 +31,13 @@ public class Pet {
 	private int age;
 	@Column(name="DATE_SHELTERED")
 	private LocalDate dateSheltered;
+	@ManyToOne(cascade=CascadeType.PERSIST)
+	@JoinColumn(name="AGENCY_ID")
+	private int agencyID;
 	public Pet() {
 		super();
 	}
-	public Pet(int petID, String species, String breed, String name, int age, LocalDate dateSheltered) {
+	public Pet(int petID, String species, String breed, String name, int age, LocalDate dateSheltered, int agencyID) {
 		super();
 		this.petID = petID;
 		this.species = species;
@@ -48,14 +45,16 @@ public class Pet {
 		this.name = name;
 		this.age = age;
 		this.dateSheltered = dateSheltered;
+		this.agencyID = agencyID;
 	}
-	public Pet(String species, String breed, String name, int age, LocalDate dateSheltered) {
+	public Pet(String species, String breed, String name, int age, LocalDate dateSheltered, int agencyID) {
 		super();
 		this.species = species;
 		this.breed = breed;
 		this.name = name;
 		this.age = age;
 		this.dateSheltered = dateSheltered;
+		this.agencyID = agencyID;
 	}
 	public int getPetID() {
 		return petID;

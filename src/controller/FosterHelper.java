@@ -22,7 +22,7 @@ public class FosterHelper {
 
 	public List<Foster> showAllItems() {
 		EntityManager em = emfactory.createEntityManager();
-		List<Foster> allItems = em.createQuery("SELECT li FROM foster li").getResultList();
+		List<Foster> allItems = em.createQuery("SELECT li FROM Foster li").getResultList();
 		return allItems;
 	}
 
