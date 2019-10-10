@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.foster;
+import model.Foster;
 
 /**
  * Servlet implementation class addFosterServlet
@@ -41,7 +41,7 @@ public class addFosterServlet extends HttpServlet {
 				String address = request.getParameter("address");
 				String phone = request.getParameter("phone");
 				
-				foster li = new foster(name, address, phone);
+				Foster li = new Foster(name, address, phone);
 				FosterHelper dao = new FosterHelper();
 				dao.insertItem(li);
 				
