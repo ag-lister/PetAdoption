@@ -54,7 +54,7 @@ public class petServlet extends HttpServlet {
 			ld = LocalDate.now();
 		}
 		int agencyID = Integer.parseInt(request.getParameter("agency_ID"));
-		Pet p = new Pet(species.toUpperCase(), breed.toUpperCase(), name.toUpperCase(), age, ld, agencyID);
+		Pet p = new Pet(species.toUpperCase(), breed.toUpperCase(), name.toUpperCase(), age, ld);
 		petHelper ph = new petHelper();
 		ph.insertPet(p);
 		getServletContext().getRequestDispatcher("/index.html").forward(request, response);
