@@ -7,19 +7,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.Agency;
-
 /**
- * Servlet implementation class addAgencyServlet
+ * Servlet implementation class viewAllAgencyItemsServlet
  */
-@WebServlet("/addAgencyServlet")
-public class addAgencyServlet extends HttpServlet {
+@WebServlet("/viewAllAgencyItemsServlet")
+public class viewAllAgencyItemsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public addAgencyServlet() {
+    public viewAllAgencyItemsServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,24 +26,21 @@ public class addAgencyServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		AgencyHelper dao = new AgencyHelper();
+		request.setAttribute("allItems", dao.showAllItems());
+		
+		if(dao.showAllItems().isEmpty()) {
+			request.setAttribute("allItems", " ");
+		}
+		getServletContext().getRequestDispatcher("/agencyView.jsp").forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String name = request.getParameter("name");
-		String address = request.getParameter("address");
-		String phone = request.getParameter("phone");
-		String email = request.getParameter("email");
-		
-		Agency li = new Agency(name, address, phone, email);
-		AgencyHelper dao = new AgencyHelper();
-		dao.insertItem(li);
-		
-		getServletContext().getRequestDispatcher("/index.html").forward(request, response);
+		// TODO Auto-generated method stub
+		doGet(request, response);
 	}
 
 }

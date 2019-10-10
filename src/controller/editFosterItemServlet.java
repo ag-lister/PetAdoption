@@ -7,19 +7,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.Agency;
+import model.Foster;
 
 /**
- * Servlet implementation class addAgencyServlet
+ * Servlet implementation class editFosterItemServlet
  */
-@WebServlet("/addAgencyServlet")
-public class addAgencyServlet extends HttpServlet {
+@WebServlet("/editFosterItemServlet")
+public class editFosterItemServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public addAgencyServlet() {
+    public editFosterItemServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -36,16 +36,19 @@ public class addAgencyServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		FosterHelper dao = new FosterHelper();
 		String name = request.getParameter("name");
 		String address = request.getParameter("address");
 		String phone = request.getParameter("phone");
-		String email = request.getParameter("email");
+		Integer tempId = Integer.parseInt(request.getParameter("id"));
 		
-		Agency li = new Agency(name, address, phone, email);
-		AgencyHelper dao = new AgencyHelper();
-		dao.insertItem(li);
+		Foster itemToUpdate = dao.searchForItemById(tempId);
+		itemToUpdate.setName(name);
+		itemToUpdate.setAddress(address);
+		itemToUpdate.setPhoneNumber(phone);
+		dao.updateItem(itemToUpdate);
 		
-		getServletContext().getRequestDispatcher("/index.html").forward(request, response);
+		getServletContext().getRequestDispatcher("/viewAllFosterItemsServlet").forward(request, response);
 	}
 
 }
