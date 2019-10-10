@@ -9,7 +9,7 @@
 <title>View All Foster</title>
 </head>
 <body>
-<form method = "post" action = "navigationServlet">
+<form method = "post" action = "fosterNavigationServlet">
 <table>
 <tr>
 <td> </td>
@@ -30,5 +30,6 @@
 <input type = "submit" value = "delete" name="doThisToItem">
 <input type="submit" value = "add" name = "doThisToItem">
 </form>
+<a href = "index.html">Go to the main page</a>
 </body>
 </html>

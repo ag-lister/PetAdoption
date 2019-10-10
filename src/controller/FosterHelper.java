@@ -31,7 +31,7 @@ static EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("
 		EntityManager em = emfactory.createEntityManager();
 		em.getTransaction().begin();
 		TypedQuery<Foster> typedQuery = em.createQuery(
-				"select li from foster li where li.name = :selectedName and li.address = :selectedAddress and li.phone = :selectedPhone",
+				"select li from foster li where li.foster_name = :selectedName and li.foster_address = :selectedAddress and li.foster_phone = :selectedPhone",
 				Foster.class);
 
 		typedQuery.setParameter("selectedTitle", toDelete.getName());

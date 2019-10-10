@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.Agency;
-import model.Foster;
 
 /**
  * Servlet implementation class addAgencyServlet
