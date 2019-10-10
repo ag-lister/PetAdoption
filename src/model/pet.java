@@ -16,7 +16,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 @Entity
 @Table(name="pet")
-public class pet {
+public class Pet {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@OneToMany(cascade=CascadeType.MERGE, fetch=FetchType.EAGER)
@@ -37,10 +37,10 @@ public class pet {
 	private int age;
 	@Column(name="DATE_SHELTERED")
 	private LocalDate dateSheltered;
-	public pet() {
+	public Pet() {
 		super();
 	}
-	public pet(int petID, String species, String breed, String name, int age, LocalDate dateSheltered) {
+	public Pet(int petID, String species, String breed, String name, int age, LocalDate dateSheltered) {
 		super();
 		this.petID = petID;
 		this.species = species;
@@ -49,7 +49,7 @@ public class pet {
 		this.age = age;
 		this.dateSheltered = dateSheltered;
 	}
-	public pet(String species, String breed, String name, int age, LocalDate dateSheltered) {
+	public Pet(String species, String breed, String name, int age, LocalDate dateSheltered) {
 		super();
 		this.species = species;
 		this.breed = breed;

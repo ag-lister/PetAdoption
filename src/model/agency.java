@@ -11,7 +11,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="agency")
-public class agency {
+public class Agency {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int agencyID;
@@ -25,16 +25,16 @@ public class agency {
 	@Column(name="AGENCY")
 	private String agencyEmail;
 	
-	public agency() {
+	public Agency() {
 		super();
 	}
-	public agency(String agencyAddress, String agencyPhone, String agencyEmail) {
+	public Agency(String agencyAddress, String agencyPhone, String agencyEmail) {
 		super();
 		this.agencyAddress = agencyAddress;
 		this.agencyPhone = agencyPhone;
 		this.agencyEmail = agencyEmail;
 	}
-	public agency(int agencyID, int petID, String agencyAddress, String agencyPhone, String agencyEmail) {
+	public Agency(int agencyID, int petID, String agencyAddress, String agencyPhone, String agencyEmail) {
 		super();
 		this.agencyID = agencyID;
 		this.petID = petID;

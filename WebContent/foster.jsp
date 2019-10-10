@@ -17,7 +17,7 @@ Address:
 Phone: 
 <input type = "text" name = "phone">
 <br />
-<input type = "submit" value="Add Item">
+<input type = "submit" value="Add Foster">
 </form> 
 <br />
 <a href = "index.html">Go to the main page</a>

@@ -7,40 +7,40 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
-import model.pet;
+import model.Pet;
 
 public class petHelper {
 	static EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("PetAdoption");
-	public void insertPet(pet p) {
+	public void insertPet(Pet p) {
 		EntityManager em = emfactory.createEntityManager();
 		em.getTransaction().begin();
 		em.persist(p);
 		em.getTransaction().commit();
 		em.close();
 	}
-	public List<pet> showAllPets() {
+	public List<Pet> showAllPets() {
 		EntityManager em = emfactory.createEntityManager();
-		List<pet> allPets = em.createQuery("Select s from Seller s").getResultList();
+		List<Pet> allPets = em.createQuery("Select s from Seller s").getResultList();
 		return allPets;
 		
 	}
-	public pet searchForPetByName(String petName) {
+	public Pet searchForPetByName(String petName) {
 		// TODO Auto-generated method stub
 		EntityManager em = emfactory.createEntityManager();
 		em.getTransaction().begin();
-		TypedQuery<pet> typedQuery = em.createQuery("select p from pet p where p.pet_name = :selectedName", pet.class);
+		TypedQuery<Pet> typedQuery = em.createQuery("select p from pet p where p.pet_name = :selectedName", Pet.class);
 		typedQuery.setParameter("selectedName", petName);
 		typedQuery.setMaxResults(1);
 
-		pet found = typedQuery.getSingleResult();
+		Pet found = typedQuery.getSingleResult();
 		em.close();
 		return found;
 	}
-	public pet searchForPetById(Integer tempId) {
+	public Pet searchForPetById(Integer tempId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	public void deletePet(pet petToDelete) {
+	public void deletePet(Pet petToDelete) {
 		// TODO Auto-generated method stub
 		
 	}
