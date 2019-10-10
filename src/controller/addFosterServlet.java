@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import model.Foster;
 
+
 /**
  * Servlet implementation class addFosterServlet
  */
@@ -34,11 +35,14 @@ public class addFosterServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		System.out.println("in servlet");
 				String name = request.getParameter("name");
 				String address = request.getParameter("address");
 				String phone = request.getParameter("phone");
+				System.out.println(name + address + phone);
 				
 				Foster li = new Foster(name, address, phone);
+				System.out.println(li.toString());
 				FosterHelper dao = new FosterHelper();
 				dao.insertItem(li);
 				
