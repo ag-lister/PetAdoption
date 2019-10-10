@@ -6,23 +6,25 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>View All Fosters</title>
+<title>View All Agencies</title>
 </head>
 <body>
-<form method = "post" action = "fosterNavigationServlet">
+<form method = "post" action = "agencyNavigationServlet">
 <table>
 <tr>
 <td> </td>
 <td><u>Name</u></td>
 <td><u>Address</u></td>
 <td><u>Phone</u></td>
+<td><u>Email</u></td>
 </tr>
 <c:forEach items="${requestScope.allItems}" var="currentitem">
 <tr>
- <td><input type="radio" name="id" value="${currentitem.id}"></td>
- <td>${currentitem.name}</td>
- <td>${currentitem.address}</td>
- <td>${currentitem.phoneNumber}</td>
+ <td><input type="radio" name="id" value="${currentitem.agencyID}"></td>
+ <td>${currentitem.agencyName}</td>
+ <td>${currentitem.agencyAddress}</td>
+ <td>${currentitem.agencyPhone}</td>
+ <td>${currentitem.agencyEmail}</td>
  </tr>
 </c:forEach>
 </table>

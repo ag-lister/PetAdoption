@@ -7,19 +7,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.Foster;
+import model.Agency;
 
 /**
  * Servlet implementation class navigationServlet
  */
 @WebServlet("/navigationServlet")
-public class fosterNavigationServlet extends HttpServlet {
+public class agencyNavigationServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public fosterNavigationServlet() {
+    public agencyNavigationServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -36,29 +36,29 @@ public class fosterNavigationServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		FosterHelper dao = new FosterHelper();
+		AgencyHelper dao = new AgencyHelper();
 		String act = request.getParameter("doThisToItem");
 		
 		if (act == null) {
 		 //no button has been selected
-		getServletContext().getRequestDispatcher("/viewAllFosterItemsServlet").forward(request, response);
+		getServletContext().getRequestDispatcher("/viewAllAgencyItemsServlet").forward(request, response);
 		} else if (act.equals("delete")) {
 			try {
 			Integer tempId = Integer.parseInt(request.getParameter("id"));
-			Foster itemToDelete = dao.searchForItemById(tempId);
+			Agency itemToDelete = dao.searchForItemById(tempId);
 			dao.deleteItem(itemToDelete);
 			getServletContext().getRequestDispatcher("/index.html").forward(request, response);
 			} catch (NumberFormatException e) {
-				getServletContext().getRequestDispatcher("/viewAllFosterItemsServlet").forward(request, response);
+				getServletContext().getRequestDispatcher("/viewAllAgencyItemsServlet").forward(request, response);
 			}
 		} else if (act.equals("edit")) {
 			try {
 				Integer tempId = Integer.parseInt(request.getParameter("id"));
-				Foster itemToEdit = dao.searchForItemById(tempId);
+				Agency itemToEdit = dao.searchForItemById(tempId);
 				request.setAttribute("itemToEdit", itemToEdit);
-				getServletContext().getRequestDispatcher("/editFosterItem.jsp").forward(request, response);
+				getServletContext().getRequestDispatcher("/edit-item.jsp").forward(request, response);
 				 } catch (NumberFormatException e) {
-				getServletContext().getRequestDispatcher("/viewAllFosterItemsServlet").forward(request, response);
+				getServletContext().getRequestDispatcher("/viewAllAgencyItemsServlet").forward(request, response);
 				}
 		} else if (act.equals("add")) {
 		getServletContext().getRequestDispatcher("/index.html").forward(request, response);
