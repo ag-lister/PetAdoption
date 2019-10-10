@@ -11,7 +11,7 @@ import javax.persistence.TypedQuery;
 import model.foster;
 
 public class FosterHelper {
-static EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("ConsoleBookshelf");
+static EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("PetAdoption");
 	
 	public void insertItem(foster li) {
 		EntityManager em = emfactory.createEntityManager();
