@@ -17,6 +17,8 @@
 <td><u>Name</u></td>
 <td><u>Age</u></td>
 <td><u>Date Sheltered</u></td>
+<td><u>Agency Name</u></td>
+<td><u>Agency Phone Number</u></td>
 </tr>
 <c:forEach items="${requestScope.allItems}" var="currentitem">
 <tr>
@@ -26,6 +28,8 @@
  <td>${currentitem.name}</td>
   <td>${currentitem.age}</td>
   <td>${currentitem.dateSheltered}</td>
+  <td>${currentitem.agency.getAgencyName()}</td>
+   <td>${currentitem.agency.getAgencyPhone()}</td>
  </tr>
 </c:forEach>
 </table>
