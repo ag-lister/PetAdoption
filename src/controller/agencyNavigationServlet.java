@@ -56,7 +56,7 @@ public class agencyNavigationServlet extends HttpServlet {
 				Integer tempId = Integer.parseInt(request.getParameter("id"));
 				Agency itemToEdit = dao.searchForItemById(tempId);
 				request.setAttribute("itemToEdit", itemToEdit);
-				getServletContext().getRequestDispatcher("/edit-item.jsp").forward(request, response);
+				getServletContext().getRequestDispatcher("/editAgencyItem.jsp").forward(request, response);
 				 } catch (NumberFormatException e) {
 				getServletContext().getRequestDispatcher("/viewAllAgencyItemsServlet").forward(request, response);
 				}
