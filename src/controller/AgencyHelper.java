@@ -31,7 +31,7 @@ static EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("
 		EntityManager em = emfactory.createEntityManager();
 		em.getTransaction().begin();
 		TypedQuery<Agency> typedQuery = em.createQuery(
-				"select li from agency li where li.agency_name = :selectedName and li.agency_address = :selectedAddress and li.agency_phone = :selectedPhone and li.agency_email = :selectedEmail",
+				"select li from Agency li where li.agencyName = :selectedName and li.agencyAddress = :selectedAddress and li.agencyPhone = :selectedPhone and li.agencyEmail = :selectedEmail",
 				Agency.class);
 
 		typedQuery.setParameter("selectedName", toDelete.getAgencyName());
@@ -69,7 +69,7 @@ static EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("
 	public List<Agency> searchForItemByName(String name) {
 		EntityManager em = emfactory.createEntityManager();
 		em.getTransaction().begin();
-		TypedQuery<Agency> typedQuery = em.createQuery("select li from agency li where li.agency_name = :selectedName",
+		TypedQuery<Agency> typedQuery = em.createQuery("select li from Agency li where li.agencyName = :selectedName",
 				Agency.class);
 		typedQuery.setParameter("selectedName", name);
 
@@ -81,7 +81,7 @@ static EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("
 	public List<Agency> searchForItemByAddress(String address) {
 		EntityManager em = emfactory.createEntityManager();
 		em.getTransaction().begin();
-		TypedQuery<Agency> typedQuery = em.createQuery("select li from agency li where li.agency_address = :selectedAddress",
+		TypedQuery<Agency> typedQuery = em.createQuery("select li from Agency li where li.agencyAddress = :selectedAddress",
 				Agency.class);
 		typedQuery.setParameter("selectedAddress", address);
 
@@ -93,7 +93,7 @@ static EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("
 	public List<Agency> searchForItemByPhone(String phone) {
 		EntityManager em = emfactory.createEntityManager();
 		em.getTransaction().begin();
-		TypedQuery<Agency> typedQuery = em.createQuery("select li from agency li where li.agency_phone = :selectedPhone",
+		TypedQuery<Agency> typedQuery = em.createQuery("select li from Agency li where li.agencyPhone = :selectedPhone",
 				Agency.class);
 		typedQuery.setParameter("selectedPhone", phone);
 
@@ -105,7 +105,7 @@ static EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("
 	public List<Agency> searchForItemByEmail(String email) {
 		EntityManager em = emfactory.createEntityManager();
 		em.getTransaction().begin();
-		TypedQuery<Agency> typedQuery = em.createQuery("select li from agency li where li.agency_email = :selectedEmail",
+		TypedQuery<Agency> typedQuery = em.createQuery("select li from Agency li where li.agencyEmail = :selectedEmail",
 				Agency.class);
 		typedQuery.setParameter("selectedEmail", email);
 
