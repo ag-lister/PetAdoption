@@ -15,6 +15,7 @@ import javax.persistence.Table;
 public class Pet {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="PET_ID")
 	private int petID;
 	@Column(name="PET_SPECIES")
 	private String species;

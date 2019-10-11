@@ -7,7 +7,6 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
-import model.Foster;
 import model.Pet;
 
 public class petHelper {
@@ -29,7 +28,7 @@ public class petHelper {
 		// TODO Auto-generated method stub
 		EntityManager em = emfactory.createEntityManager();
 		em.getTransaction().begin();
-		TypedQuery<Pet> typedQuery = em.createQuery("select p from Pet p where p.pet_name = :selectedName", Pet.class);
+		TypedQuery<Pet> typedQuery = em.createQuery("select p from Pet p where p.name = :selectedName", Pet.class);
 		typedQuery.setParameter("selectedName", petName);
 		typedQuery.setMaxResults(1);
 
@@ -37,9 +36,12 @@ public class petHelper {
 		em.close();
 		return found;
 	}
-	public Pet searchForPetById(Integer tempId) {
-		// TODO Auto-generated method stub
-		return null;
+	public Pet searchForPetById(int idToEdit) {
+		EntityManager em = emfactory.createEntityManager();
+		em.getTransaction().begin();
+		Pet found = em.find(Pet.class, idToEdit);
+		em.close();
+		return found;
 	}
 	public void deletePet(Pet petToDelete) {
 		EntityManager em = emfactory.createEntityManager();
