@@ -42,7 +42,8 @@ public class petServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		AgencyHelper ah = new AgencyHelper();
-		Agency a = new Agency();
+		int id = Integer.parseInt(request.getParameter("id"));
+		Agency a = ah.searchForItemById(id);
 		String species = request.getParameter("species");
 		String breed = request.getParameter("breed");
 		String name = request.getParameter("name");
@@ -57,10 +58,9 @@ public class petServlet extends HttpServlet {
 			ld = LocalDate.now();
 		}
 
-		String agencyName = request.getParameter("agencyName");
-		a.getAgencyID();
 
 		Pet p = new Pet(species.toUpperCase(), breed.toUpperCase(), name.toUpperCase(), age, ld);
+		p.setAgency(a);
 		petHelper ph = new petHelper();
 		ph.insertPet(p);
 		getServletContext().getRequestDispatcher("/index.html").forward(request, response);

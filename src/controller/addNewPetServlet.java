@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class viewAllPetsServlet
+ * Servlet implementation class addNewPetServlet
  */
-@WebServlet("/viewAllPetsServlet")
-public class viewAllPetsServlet extends HttpServlet {
+@WebServlet("/addNewPetServlet")
+public class addNewPetServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public viewAllPetsServlet() {
+    public addNewPetServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,23 +26,20 @@ public class viewAllPetsServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		petHelper dao = new petHelper();
-		request.setAttribute("allItems", dao.showAllPets());
+		AgencyHelper dao = new AgencyHelper();
+		request.setAttribute("allItems", dao.showAllItems());
 		
-		if(dao.showAllPets().isEmpty()) {
+		if(dao.showAllItems().isEmpty()) {
 			request.setAttribute("allItems", " ");
 		}
-		
-		getServletContext().getRequestDispatcher("/petView.jsp").forward(request, response);
-}
-	
+		getServletContext().getRequestDispatcher("/pet.jsp").forward(request, response);
+	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		
 	}
 
 }
