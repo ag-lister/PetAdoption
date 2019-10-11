@@ -29,11 +29,15 @@ Date Sheltered:
 		<br />
 Agencies:<br />
 
-<select name="addAgencyServlet" multiple size="6">
 <c:forEach items="${requestScope.allItems}" var="currentitem">
-   <option value = "${currentitem.id}">${currentitem.agencyName} | ${currentitem.agencyPhone}</option>
+<tr>
+ <td><input type="radio" name="id" value="${currentitem.agencyID}"></td>
+ <td>${currentitem.agencyName}</td>
+ <td>${currentitem.agencyAddress}</td>
+ <td>${currentitem.agencyPhone}</td>
+ <td>${currentitem.agencyEmail}</td>
+ </tr>
 </c:forEach>
-</select>
 <br />
 <input type = "submit" value="Create List and Add Items">
 </form>
