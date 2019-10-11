@@ -1,25 +1,21 @@
 package model;
 
 import java.time.LocalDate;
-import java.util.List;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 @Entity
 @Table(name="pet")
 public class Pet {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="PET_ID")
 	private int petID;
 	@Column(name="PET_SPECIES")
 	private String species;
@@ -31,11 +27,18 @@ public class Pet {
 	private int age;
 	@Column(name="DATE_SHELTERED")
 	private LocalDate dateSheltered;
+
+	@ManyToOne(cascade=CascadeType.PERSIST)
+	@JoinColumn(name="AGENCY_ID")
+	private Agency agency;
+
+
 	
 	public Pet() {
 		super();
 	}
-	public Pet(int petID, String species, String breed, String name, int age, LocalDate dateSheltered) {
+	public Pet(int petID, String species, String breed, String name, int age, LocalDate dateSheltered, Agency agency) {
+
 		super();
 		this.petID = petID;
 		this.species = species;
@@ -43,6 +46,8 @@ public class Pet {
 		this.name = name;
 		this.age = age;
 		this.dateSheltered = dateSheltered;
+		this.agency = agency;
+
 	}
 	public Pet(String species, String breed, String name, int age, LocalDate dateSheltered) {
 		super();
@@ -88,10 +93,18 @@ public class Pet {
 	public void setDateSheltered(LocalDate dateSheltered) {
 		this.dateSheltered = dateSheltered;
 	}
+	public Agency getAgency() {
+		return agency;
+	}
+	public void setAgency(Agency agency) {
+		this.agency = agency;
+	}
+	
 	@Override
 	public String toString() {
-		return "pet [petID=" + petID + ", species=" + species + ", breed=" + breed + ", name=" + name + ", age=" + age
-				+ ", dateSheltered=" + dateSheltered + "]";
+		return "Pet [petID=" + petID + ", species=" + species + ", breed=" + breed + ", name=" + name + ", age=" + age
+				+ ", dateSheltered=" + dateSheltered + ", agency=" + agency + "]";
 	}
+	
 
 }

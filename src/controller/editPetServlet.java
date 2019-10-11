@@ -9,21 +9,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.Agency;
 import model.Pet;
 
-
 /**
- * Servlet implementation class petServlet
+ * Servlet implementation class editPetServlet
  */
-@WebServlet("/petServlet")
-public class petServlet extends HttpServlet {
+@WebServlet("/editPetServlet")
+public class editPetServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public petServlet() {
+    public editPetServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -41,8 +39,7 @@ public class petServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		AgencyHelper ah = new AgencyHelper();
-		Agency a = new Agency();
+	
 		String species = request.getParameter("species");
 		String breed = request.getParameter("breed");
 		String name = request.getParameter("name");
@@ -56,14 +53,16 @@ public class petServlet extends HttpServlet {
 		} catch (NumberFormatException ex) {
 			ld = LocalDate.now();
 		}
-
-		String agencyName = request.getParameter("agencyName");
-		a.getAgencyID();
-
-		Pet p = new Pet(species.toUpperCase(), breed.toUpperCase(), name.toUpperCase(), age, ld);
 		petHelper ph = new petHelper();
-		ph.insertPet(p);
-		getServletContext().getRequestDispatcher("/index.html").forward(request, response);
+		int tempId = Integer.parseInt(request.getParameter("id"));
+		Pet petToUpdate = ph.searchForPetById(tempId);
+		petToUpdate.setSpecies(species);
+		petToUpdate.setBreed(breed);
+		petToUpdate.setName(name);
+		petToUpdate.setAge(age);
+		petToUpdate.setDateSheltered(ld);
+		
+		getServletContext().getRequestDispatcher("/viewAllPetsServlet").forward(request, response);
 	}
 
 }

@@ -28,7 +28,7 @@ public class petHelper {
 		// TODO Auto-generated method stub
 		EntityManager em = emfactory.createEntityManager();
 		em.getTransaction().begin();
-		TypedQuery<Pet> typedQuery = em.createQuery("select p from Pet p where p.pet_name = :selectedName", Pet.class);
+		TypedQuery<Pet> typedQuery = em.createQuery("select p from Pet p where p.name = :selectedName", Pet.class);
 		typedQuery.setParameter("selectedName", petName);
 		typedQuery.setMaxResults(1);
 
@@ -36,15 +36,35 @@ public class petHelper {
 		em.close();
 		return found;
 	}
-	public Pet searchForPetById(Integer tempId) {
-		// TODO Auto-generated method stub
-		return null;
+	public Pet searchForPetById(int idToEdit) {
+		EntityManager em = emfactory.createEntityManager();
+		em.getTransaction().begin();
+		Pet found = em.find(Pet.class, idToEdit);
+		em.close();
+		return found;
 	}
 	public void deletePet(Pet petToDelete) {
-		// TODO Auto-generated method stub
+		EntityManager em = emfactory.createEntityManager();
+		em.getTransaction().begin();
+		TypedQuery<Pet> typedQuery = em.createQuery(
+				"select p from Pet p where p.species = :selectedSpecies and p.breed = :selectedBreed "
+				+ "and p.name = :selectedName", Pet.class);
+
+		typedQuery.setParameter("selectedSpecies", petToDelete.getSpecies());
+		typedQuery.setParameter("selectedBreed", petToDelete.getBreed());
+		typedQuery.setParameter("selectedName", petToDelete.getName());
+
+		typedQuery.setMaxResults(1);
+
+		Pet result = typedQuery.getSingleResult();
+
+		em.remove(result);
+		em.getTransaction().commit();
+		em.close();
+	}
+
 		
 	}
 	
-	}
 
 
