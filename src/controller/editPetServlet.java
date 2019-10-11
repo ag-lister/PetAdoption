@@ -31,15 +31,7 @@ public class editPetServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-	
 		String species = request.getParameter("species");
 		String breed = request.getParameter("breed");
 		String name = request.getParameter("name");
@@ -54,15 +46,24 @@ public class editPetServlet extends HttpServlet {
 			ld = LocalDate.now();
 		}
 		petHelper ph = new petHelper();
-		int tempId = Integer.parseInt(request.getParameter("id"));
+		Integer tempId = Integer.parseInt(request.getParameter("id"));
 		Pet petToUpdate = ph.searchForPetById(tempId);
 		petToUpdate.setSpecies(species);
 		petToUpdate.setBreed(breed);
 		petToUpdate.setName(name);
 		petToUpdate.setAge(age);
 		petToUpdate.setDateSheltered(ld);
+		ph.updatePet(petToUpdate);
 		
 		getServletContext().getRequestDispatcher("/viewAllPetsServlet").forward(request, response);
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
 	}
 
 }

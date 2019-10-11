@@ -62,7 +62,15 @@ public class petHelper {
 		em.getTransaction().commit();
 		em.close();
 	}
+	public void updatePet(Pet toEdit) {
+		EntityManager em = emfactory.createEntityManager();
+		em.getTransaction().begin();
 
+		em.merge(toEdit);
+		em.getTransaction().commit();
+		em.close();
+
+	}
 		
 	}
 	

@@ -21,9 +21,9 @@ Age:
 <input type = "text" name = "age" value= "${itemToEdit.age}">
 <br />
 Date Sheltered: 
-<input type="text" name="month" placeholder="mm" size="4" value= "${itemToEdit.month}"> 
-		<input type="text" name="day" placeholder="dd" size="4" value= "${itemToEdit.day}"> 
-		<input type="text" name="year" placeholder="yyyy" size="4" value = "${itemToEdit.year}">
+		<input type="text" name="month" placeholder="mm" size="4" value="${itemToEdit.dateSheltered.getMonthValue()}"> 
+		<input type="text" name="day" placeholder="dd" size="4" value="${listToEdit.dateSheltered.getDayOfMonth()}"> 
+		<input type="text" name="year" placeholder="yyyy" size="4" value="${listToEdit.dateSheltered.getYear()}" >
 		<br />
 <input type = "hidden" name = "id" value="${itemToEdit.petID}">
 <input type = "submit" value="Save Edited Item">
