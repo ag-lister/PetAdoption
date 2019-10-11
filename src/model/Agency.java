@@ -13,6 +13,7 @@ import javax.persistence.Table;
 public class Agency {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="AGENCY_ID")
 	private int agencyID;
 	@Column(name="AGENCY_NAME")
 	private String agencyName;
